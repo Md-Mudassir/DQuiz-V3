@@ -4,9 +4,14 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
+const postRoute = require("./routes/posts");
+const cors = require("cors");
+require("dotenv/config");
+
+//parse and display the data
 
 const app = express();
-
+app.use(cors());
 // Passport Config
 require("./config/passport")(passport);
 
@@ -19,6 +24,12 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+//db connection
+// mongoose.connect(
+//   process.env.DB_CONNECTION,
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   () => console.log("mongodb connected")
+// );
 // EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
@@ -53,6 +64,9 @@ app.use(function(req, res, next) {
 // Routes
 app.use("/", require("./routes/index.js"));
 app.use("/users", require("./routes/users.js"));
+
+//when user hits posts url transfer to postRoute
+app.use("/posts", postRoute);
 
 const PORT = process.env.PORT || 3000;
 
