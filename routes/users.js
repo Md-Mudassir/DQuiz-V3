@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
   if (!passwordStrength) {
     errors.push({
       msg:
-        "Password must be at least 1 number, 1 special character, one lowercase & uppercase letter & length must be 6 or greater."
+        "Password must be at least one number, one special character, one lowercase & uppercase letter & length must be 6 or greater."
     });
   }
 
