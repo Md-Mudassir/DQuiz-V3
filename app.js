@@ -4,14 +4,14 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
-const postRoute = require("./routes/posts");
+const postRoute = require("./routes/questions");
 const cors = require("cors");
 require("dotenv/config");
 
-//parse and display the data
-
 const app = express();
 app.use(cors());
+app.use("/css", express.static("css"));
+
 // Passport Config
 require("./config/passport")(passport);
 
@@ -33,7 +33,7 @@ mongoose
 // EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
-
+app.use(express.static("public"));
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
@@ -66,7 +66,7 @@ app.use("/", require("./routes/index.js"));
 app.use("/users", require("./routes/users.js"));
 
 //when user hits posts url transfer to postRoute
-app.use("/posts", postRoute);
+app.use("/questions", postRoute);
 
 const PORT = process.env.PORT || 3000;
 
