@@ -5,8 +5,10 @@ const passport = require("passport");
 // Load User model
 const User = require("../models/UserDetails");
 const { forwardAuthenticated } = require("../config/auth");
+
+//Password strength
 const strongRegex = new RegExp(
-  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
 );
 
 // Login Page
@@ -16,25 +18,25 @@ router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
 router.get("/register", forwardAuthenticated, (req, res) =>
   res.render("register")
 );
-// Register Page
+// Players
 router.get("/rules", forwardAuthenticated, (req, res) => res.render("rules"));
 router.get("/play", forwardAuthenticated, (req, res) => res.render("play"));
 
 // Register
 router.post("/register", (req, res) => {
-  const { name, email, password, password2 } = req.body;
+  const { name, email, password } = req.body;
+  const passwordStrength = strongRegex.test(password);
   let errors = [];
 
-  if (!name || !email || !password || !password2) {
+  if (!name || !email || !password) {
     errors.push({ msg: "Please enter all fields" });
   }
 
-  if (password != password2) {
-    errors.push({ msg: "Passwords do not match" });
-  }
-
-  if (password.length < 6) {
-    errors.push({ msg: "Password must be at least 6 characters" });
+  if (!passwordStrength) {
+    errors.push({
+      msg:
+        "Password must be at least 1 number, 1 special character, one lowercase & uppercase letter & length must be 6 or greater."
+    });
   }
 
   if (errors.length > 0) {
@@ -42,8 +44,7 @@ router.post("/register", (req, res) => {
       errors,
       name,
       email,
-      password,
-      password2
+      password
     });
   } else {
     User.findOne({ email: email }).then(user => {
