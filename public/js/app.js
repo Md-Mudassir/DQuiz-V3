@@ -12,7 +12,7 @@ let Questions = " ";
 
 // intitialize and start the game
 initialize = () => {
-  fetch("http://localhost:3112/posts")
+  fetch("http://localhost:3000/questions")
     .then(res => {
       return res.json();
     })
