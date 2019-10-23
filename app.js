@@ -10,7 +10,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use("/css", express.static("css"));
-
+app.use(express.static(`${__dirname}/public`));
 // Passport Config
 require("./config/passport")(passport);
 
@@ -57,6 +57,10 @@ app.use(function(req, res, next) {
 app.use("/", require("./routes/index.js"));
 app.use("/users", require("./routes/users.js"));
 app.use("/questions", postRoute);
+
+app.get("/hello", function(req, res) {
+  res.sendFile("CS.html", { root: __dirname });
+});
 
 const PORT = process.env.PORT || 3000;
 
