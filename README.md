@@ -5,6 +5,15 @@ Failed to score good point? Not a problem. Try again! Fail again! Fail better!
 
 Hey Geeks! This is a responsive project which is a simple quiz web app where a user can select a category and based on the selection the questions which are stored & fetched from MongoDB and at the end score is declared which is stored locally & it's developed using HTML,CSS & JavaScript, NodeJS, ExpressJS..
 
+## Usage
+
+```
+npm i 
+```
+Once installed, open http://localhost:3000/
+
+![Updated](https://github.com/Md-Mudassir/DQuiz-V3/blob/master/public/img/dq-horz.jpg)
+
 ![Layout](https://github.com/Md-Mudassir/DQuiz-V1/blob/master/img/mobile.jpg)
 
 ## Design in Figma:
