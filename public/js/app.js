@@ -17,7 +17,6 @@ initialize = () => {
       return res.json();
     })
     .then(loadedQuestions => {
-      console.log(loadedQuestions);
       questions = loadedQuestions.map(loadedQuestion => {
         const formattedQuestion = {
           question: loadedQuestion.question
