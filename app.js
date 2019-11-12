@@ -7,6 +7,9 @@ const session = require("express-session");
 const postRoute = require("./routes/questions");
 const cors = require("cors");
 
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+
 const app = express();
 app.use(cors());
 app.use("/css", express.static("css"));
@@ -15,7 +18,11 @@ app.use("/start", express.static(`${__dirname}/public`));
 require("./config/passport")(passport);
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+
+const db = process.env.DATABASE.replace(
+  "<PASSWORD>",
+  process.env.DATABASE_PASSWORD
+);
 
 // Connect to MongoDB
 mongoose
