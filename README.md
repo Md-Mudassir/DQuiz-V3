@@ -1,5 +1,7 @@
 # DQuiz-V3
 
+Play: https://dquizv3.herokuapp.com/
+
 Tests your knowledge on featuring sections.
 Failed to score good point? Not a problem. Try again! Fail again! Fail better!
 
