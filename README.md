@@ -2,6 +2,8 @@
 
 Play: https://dquizv3.herokuapp.com/
 
+#### DQuiz-V1: [Visit Repo](https://github.com/Md-Mudassir/DQuiz-V1)
+
 Tests your knowledge on featuring sections.
 Failed to score good point? Not a problem. Try again! Fail again! Fail better!
 
